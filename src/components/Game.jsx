@@ -1,5 +1,5 @@
 import Score from "./Score";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import '../styles/Game.css';
 
 function Game({ difficulty, range }) {
@@ -1192,7 +1192,7 @@ function Game({ difficulty, range }) {
       });
     const [restart, setRestart] = useState(false)
     const [memory, setMemory] = useState([])
-    const array = data.data
+    const array = shuffle(data.data)
 
     const key = import.meta.env.VITE_API_KEY;
 
@@ -1204,22 +1204,42 @@ function Game({ difficulty, range }) {
     //     .then(json => {
     //             setData(json)       
     //     })
-    console.log(range)
       
      
 //    
  }, [range]) 
 
+    function shuffle(array) {
+        let currentIndex = array.length;
+        let newArray = array
+        while(currentIndex !=0) {
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [newArray[currentIndex], newArray[randomIndex]] = [
+                newArray[randomIndex], newArray[currentIndex]];
+        }
+        return newArray
+    }
+
     function gameOver() {
         console.log("over")
+        if(score.highScore < score.score) {
+            setScore({score: 0, highScore: score.score})
+        }else {
+            setScore({...score, score: 0})
+        }
+
+        setMemory([])
         //const endDisplay = document.querySelector
     }
 
     function inputEvent(e) {
         if(memory.includes(e.id)) {
-            gameOver()
+             return gameOver()
         }
         setMemory([...memory, e.id])
+        setScore({...score, score: score.score + 1})
+        console.log(memory, score)
     }
 
    
@@ -1228,7 +1248,6 @@ function Game({ difficulty, range }) {
 
     if(!data) return;
    
-    console.log(data.data)
     return (
         <div className="game">
             <div className="game-over">
