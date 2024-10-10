@@ -1,7 +1,7 @@
 import './App.css'
  import { useState } from 'react'
 import Menu from './components/Menu'
-import Game from './components/Game'
+import StartGame from './components/Game'
 
 function App() {
   
@@ -15,7 +15,7 @@ function App() {
           setDifficulty={setDifficulty} 
           setRange={setRange} 
           range={range}/> 
-        : <Game 
+        : <StartGame 
           difficulty={difficulty} 
           range={range}/>
 
