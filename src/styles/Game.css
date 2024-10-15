@@ -1,16 +1,73 @@
-.gif-s{
-    width: 200px;
-    height: 200px;
-    margin: 10px;
+
+.loading-bar{
+    height: 40px;
+    width: 75%;
+    background-color: rgb(165, 165, 165);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    border-radius: 50px; 
 }
 
-.gif-m{
-    width: 275px;
-    height: 250px;
-    margin: 15px 20px;
+.loading-title{
+    position: inherit;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.gif-l{
-    width: 375px;
-    height: 350px;
+.progress-bar{
+    background-color: rgb(13, 170, 21); 
+    color: white; 
+    padding: 5px; 
+    font-size: 20px;
+    text-align: end;
+    border-radius: 50px; 
+}
+
+.progress{
+    width: 0%;
+}
+
+.game{
+    display: none;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 10px; 
+    padding: 15px;
+}
+
+.gif-s, .gif-m, .gif-l {
+    border: 1px solid black;
+    border-radius: 25px;
+    aspect-ratio: 100/80;
+    flex: 1 1 160px; 
+}
+
+.gif-s {
+    width: 14%;
+}
+
+.gif-m {
+    width: 18.5%;
+    max-width: 300px;
+}
+
+.gif-l {
+    width: 32%;
+    max-width: 450px;
+}
+
+/* For smaller screens */
+@media screen and (max-width: 1000px) {
+    .container {
+        justify-content: center; 
+    }
+   
 }
