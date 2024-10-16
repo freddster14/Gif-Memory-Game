@@ -6,7 +6,7 @@ function Score({
     range,
     setScore,
 }) {
-
+   
     if(range === highScore){
         document.querySelector('.win-screen').style.display = "flex"
     }

@@ -9,10 +9,15 @@ function StartGame({range, score, setScore}) {
  
     useEffect(() => {
         fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=${range}&offset=0&rating=g&bundle=messaging_non_clips`)
-             .then(response => response.json())
-             .then(json => {
-                setData(json)       
-             })
+            .then(response => {
+                if(response.ok) {
+                    return response.json()
+                }
+                console.log(response)
+                throw new Error('Unable to load! Try again in the next hour.')
+            })
+            .then(json => setData(json))
+            .catch(error => alert(error))
       }, [range, key]);
       //Waits for data to fetch
       if(!data) return;
@@ -51,23 +56,19 @@ function Game({ range, data, score, setScore}) {
         }
         return newArray
     }
-    //Updates score when same gif clicked
-    function restartScore() {
-        if(score.highScore < score.score) {
-            setScore({score: 0, highScore: score.score})
-        }else {
-            setScore({...score, score: 0})
-        }
-
-        setMemory([])
-    }
+   
     //Keeps track gifs clicked and score
     function gifClickEvent(e) {
         if(memory.includes(e.id)) {
-             return restartScore()
+            setScore({...score, score: 0})
+            setMemory([])
+        } else {
+            setScore({...score, score: score.score + 1})
+            setMemory([...memory, e.id])
+            if(score.score + 1 > score.highScore) {
+                setScore({...score, highScore: score.score})
+            }
         }
-        setMemory([...memory, e.id])
-        setScore({...score, score: score.score + 1})
     }
     //Waits for all gifs to be loaded to display
     function loaded(e){
@@ -82,7 +83,8 @@ function Game({ range, data, score, setScore}) {
                 current = []
                 document.querySelector('.game').style.display = "block"
                 document.querySelector('.loading-bar').style.display = "none"
-    
+                document.querySelector('.title').style.display = "block"
+                document.querySelector('.score-board').style.display = "flex";
             }
         }
     }
@@ -102,7 +104,7 @@ function Game({ range, data, score, setScore}) {
         <>
             <div className="loading-bar">
                 <h1 className="loading-title">Loading...</h1>
-                <div className="progress-bar progress"></div>
+                <div className="progress-bar progress">0</div>
             </div>
             <div className="game">
                 

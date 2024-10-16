@@ -3,13 +3,14 @@ import '../styles/Menu.css';
 export default function Menu({ setDifficulty, setRange, range }) {
 
     function setDifficult (set) {
-        const difficultP = document.querySelector('.difficulty').textContent
-        const title = document.querySelector('.title')
-        set(difficultP)
-        document.querySelector('.title h2').style.display = "none"
+        const difficultP = document.querySelector('.difficulty').textContent;
+        const title = document.querySelector('.title');
+        set(difficultP);
+        document.querySelector('.title h2').style.display = "none";
         document.querySelector('.return-text').style.display = "block"
-        title.style.position = "static"
-        title.style.transform = "none"
+        title.style.display = "none";
+        title.style.position = "static";
+        title.style.transform = "none";
     }
 
   
