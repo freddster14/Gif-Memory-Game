@@ -1,8 +1,14 @@
 .main-menu {
     display: flex;
     flex-direction: column;
+    gap: 5px;
+    font-size: 1.5em;
+    grid-column: 1/-1;
+    width: 200px;
 }
 
-.main-menu h1 {
-    
+.difficulty{
+    font-size: 2em;
+    text-decoration: underline;
 }
+

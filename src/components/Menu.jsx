@@ -2,11 +2,14 @@ import '../styles/Menu.css';
 
 export default function Menu({ setDifficulty, setRange, range }) {
 
-    function setDifficult (set, range) {
-        console.log(range)
+    function setDifficult (set) {
         const difficultP = document.querySelector('.difficulty').textContent
+        const title = document.querySelector('.title')
         set(difficultP)
-
+        document.querySelector('.title h2').style.display = "none"
+        document.querySelector('.return-text').style.display = "block"
+        title.style.position = "static"
+        title.style.transform = "none"
     }
 
   
@@ -28,7 +31,7 @@ export default function Menu({ setDifficulty, setRange, range }) {
             className="slider" 
             id="myRange"
             />
-            <button onClick={() => setDifficult(setDifficulty, range)}>Start</button>
+            <button onClick={() => setDifficult(setDifficulty)}>Start</button>
         </div>
     )
   

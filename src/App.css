@@ -1,6 +1,29 @@
 #root {
   max-width: 1300px;
-  margin: 0 auto;
   text-align: center;
+  display: grid;
+  margin: 0px auto;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 115px 1fr;
 }
 
+.title{
+  position: absolute;
+  margin: 0px auto;
+  grid-column: 1/-1;
+  cursor: pointer;
+  width: fit-content;
+  top: 13%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  grid-column: 1/1;
+  font-size: 1.2em;
+}
+
+.title h1 {
+}
+
+.return-text {
+  display: none;
+}

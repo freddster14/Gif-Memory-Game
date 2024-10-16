@@ -1,31 +1,28 @@
-import Score from "./Score";
 import { useState, useEffect } from "react";
 import '../styles/Game.css';
 
 
 
-function StartGame({difficulty, range}) {
+function StartGame({range, score, setScore}) {
     const [data, setData] = useState(false);
     const key = import.meta.env.VITE_API_KEY;
  
     useEffect(() => {
-   
         fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=${range}&offset=0&rating=g&bundle=messaging_non_clips`)
-     
              .then(response => response.json())
              .then(json => {
                 setData(json)       
              })
-
-        
       }, [range, key]);
+      //Waits for data to fetch
       if(!data) return;
       return (
         <>
            <Game
             range={range}
             data={data}
-            
+            score={score}
+            setScore={setScore}
             />
            
         </>
@@ -35,18 +32,14 @@ function StartGame({difficulty, range}) {
 
 
 
-function Game({ range, data,}) {
+function Game({ range, data, score, setScore}) {
     const [load, setLoad] = useState(false)
-    const [score, setScore] = useState({
-        score: 0,
-        highScore: 0,
-    })
     const [memory, setMemory] = useState([])
     const cards = shuffle(data.data)
     let name = null;
     let current = []
 
-
+    //Mixes gifs
     function shuffle(array) {
         let currentIndex = array.length;
         let newArray = array
@@ -58,8 +51,8 @@ function Game({ range, data,}) {
         }
         return newArray
     }
-
-    function gameOver() {
+    //Updates score when same gif clicked
+    function restartScore() {
         if(score.highScore < score.score) {
             setScore({score: 0, highScore: score.score})
         }else {
@@ -67,17 +60,16 @@ function Game({ range, data,}) {
         }
 
         setMemory([])
-        //const endDisplay = document.querySelector
     }
-
-    function inputEvent(e) {
+    //Keeps track gifs clicked and score
+    function gifClickEvent(e) {
         if(memory.includes(e.id)) {
-             return gameOver()
+             return restartScore()
         }
         setMemory([...memory, e.id])
         setScore({...score, score: score.score + 1})
     }
-
+    //Waits for all gifs to be loaded to display
     function loaded(e){
         if(!load) {
             current.push(e.target)
@@ -96,30 +88,24 @@ function Game({ range, data,}) {
     }
 
 
-
+    // GIF Class Name
     if(range < 10) {
-        name = "gif-l"
+        name = "gif gif-l"
     } else if (range < 15) {
-        name = "gif-m"
+        name = "gif gif-m"
     } else {
-        name = "gif-s"
+        name = "gif gif-s"
     }  
    
  
     return (
         <>
-            <div className="game-over">
-            </div>
             <div className="loading-bar">
                 <h1 className="loading-title">Loading...</h1>
                 <div className="progress-bar progress"></div>
             </div>
             <div className="game">
-                <Score
-                score={score.score}
-                highScore={score.highScore}
-                range={range}
-                />
+                
                 <div className="card-container">
                     {cards.map((gif, index) => (
                         <img 
@@ -127,7 +113,7 @@ function Game({ range, data,}) {
                         className={name} 
                         id={gif.id}  
                         src={gif.images.original.url} 
-                        onClick={(e) => inputEvent(e.target)} 
+                        onClick={(e) => gifClickEvent(e.target)} 
                         onLoad={(e) => loaded(e)} 
                         />
                     ))}

@@ -7,7 +7,18 @@
     left: 50%;
     transform: translate(-50%, -50%);
     position: fixed;
+    z-index: 1;
     border-radius: 50px; 
+}
+
+.loading-bar::before{
+    content: '';
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    transform: translate(-50%, -50%);
+    z-index: -1;
 }
 
 .loading-title{
@@ -20,6 +31,7 @@
 .progress-bar{
     background-color: rgb(13, 170, 21); 
     color: white; 
+    z-index: 1;
     padding: 5px; 
     font-size: 20px;
     text-align: end;
@@ -32,6 +44,7 @@
 
 .game{
     display: none;
+    grid-column: 1/-1;
 }
 
 .card-container {
@@ -43,15 +56,22 @@
     padding: 15px;
 }
 
-.gif-s, .gif-m, .gif-l {
+.gif {
     border: 1px solid black;
+    cursor: pointer;
     border-radius: 25px;
     aspect-ratio: 100/80;
-    flex: 1 1 160px; 
+    flex: 1 1 160px;
+    transition: transform 0.2s ease-in-out; 
+}
+
+.gif:hover {
+    transform: scale(1.05);
 }
 
 .gif-s {
     width: 14%;
+    max-width: 250px;
 }
 
 .gif-m {

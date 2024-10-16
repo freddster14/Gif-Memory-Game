@@ -1,0 +1,26 @@
+.score-board{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 15px;
+    font-size: 3em;
+    gap: 100px;
+    grid-column: 2/4;
+    grid-row: 1/1;
+}
+
+.win-screen{
+    display: none;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 1.2em;
+}
+
+
+
+.win-screen div {
+    display: flex;
+    justify-content: center;
+    gap: 17px;
+    margin-top: 10px;
+}
