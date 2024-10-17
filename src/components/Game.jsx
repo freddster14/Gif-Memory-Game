@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import '../styles/Game.css';
 
-
-
 function StartGame({range, score, setScore}) {
     const [data, setData] = useState(false);
     const key = import.meta.env.VITE_API_KEY;
- 
     useEffect(() => {
         fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=${range}&offset=0&rating=g&bundle=messaging_non_clips`)
             .then(response => {
@@ -27,14 +24,10 @@ function StartGame({range, score, setScore}) {
             data={data}
             score={score}
             setScore={setScore}
-            />
-           
+            />  
         </>
       )
-
 }
-
-
 
 function Game({ range, data, score, setScore}) {
     const [load, setLoad] = useState(false)
@@ -54,7 +47,6 @@ function Game({ range, data, score, setScore}) {
         }
         return newArray
     }
-   
     //Keeps track gifs clicked and score
     function gifClickEvent(e) {
         if(memory.includes(e.id)) {
@@ -97,7 +89,6 @@ function Game({ range, data, score, setScore}) {
     } else {
         name = "gif gif-s"
     }
-    
     return (
         <>
             <div className="loading-bar">
@@ -120,7 +111,6 @@ function Game({ range, data, score, setScore}) {
                 </div>
             </div>
         </>
-
     )
 };
 

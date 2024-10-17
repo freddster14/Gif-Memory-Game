@@ -1,6 +1,6 @@
 import './App.css'
 import Score from './components/Score'
- import { useState } from 'react'
+import { useState } from 'react'
 import Menu from './components/Menu'
 import StartGame from './components/Game'
 
@@ -19,11 +19,14 @@ function App() {
         <h2>Try to memorize the Gifs!</h2>
         <p className='return-text'>Return to Main Menu</p>
       </div>
-      {difficulty === undefined 
-        ? <Menu 
+      {
+        difficulty === undefined 
+        ? 
+        <Menu 
           setDifficulty={setDifficulty} 
           setRange={setRange} 
-          range={range}/> 
+          range={range}
+        /> 
         : 
         <>
           <Score
@@ -39,8 +42,6 @@ function App() {
           />
         </>
       }
-      
-      
     </>
   )
 }

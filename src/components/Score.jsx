@@ -33,7 +33,6 @@ function Score({
             </div>
         </>
     )
-
 }
 
 export default Score
