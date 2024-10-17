@@ -1,8 +1,11 @@
-# React + Vite
+# GifShuffle
+Live Preview: [Click Here]
+## Technologies Used
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+* JavaScript
+* JSX
+* React
+* Vite
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
+GifShuffle challenges you to try and memorize all the gif. Select your own difficulty.
