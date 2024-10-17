@@ -1,5 +1,5 @@
 # GifShuffle
-Live Preview: [Click Here]
+Live Preview: [Click Here] (https://gif-memory-game.vercel.app/)
 ## Technologies Used
 
 * JavaScript
