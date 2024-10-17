@@ -45,6 +45,7 @@
 .game{
     display: none;
     grid-column: 1/-1;
+    height: fit-content;
 }
 
 .card-container {
@@ -53,7 +54,6 @@
     align-items: center;
     flex-wrap: wrap; 
     gap: 10px; 
-    padding: 15px;
 }
 
 .gif {
@@ -84,10 +84,18 @@
     max-width: 450px;
 }
 
-/* For smaller screens */
-@media screen and (max-width: 1000px) {
-    .container {
-        justify-content: center; 
+
+
+@media screen and (max-width: 750px) {
+    .gif{
+        flex: 1 1 120px;
+        max-width: 350px;
     }
-   
+}
+
+@media screen and (max-width: 500px) {
+    .gif{
+        flex: 1 80px;
+        max-width: 200px;
+    }
 }

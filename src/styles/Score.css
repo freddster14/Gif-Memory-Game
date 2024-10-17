@@ -2,25 +2,62 @@
     display: none;
     justify-content: end;
     align-items: center;
-    padding: 15px;
     font-size: 3em;
-    gap: 100px;
+    gap: 80px;
     grid-column: 2/4;
     grid-row: 1/1;
 }
 
 .win-screen{
     display: none;
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     flex-direction: column;
     gap: 3px;
+    z-index: 1;
     font-size: 1.2em;
 }
 
+.win-screen:before{
+    content: '';
+    background-color: rgba(153, 153, 153, 0.918);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 
 
+.win-screen p, .win-screen h1 {
+    z-index: 1;
+}
 .win-screen div {
     display: flex;
     justify-content: center;
     gap: 17px;
+    z-index: 1;
     margin-top: 10px;
+}
+
+@media screen and (max-width: 750px) {
+    .score-board{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: end;
+        font-size: 2em;
+        gap: 5px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .score-board{
+        
+        font-size: 1.3em;
+        gap: 5px;
+    }
 }

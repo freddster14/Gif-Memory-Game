@@ -13,7 +13,6 @@ function StartGame({range, score, setScore}) {
                 if(response.ok) {
                     return response.json()
                 }
-                console.log(response)
                 throw new Error('Unable to load! Try again in the next hour.')
             })
             .then(json => setData(json))
@@ -43,7 +42,6 @@ function Game({ range, data, score, setScore}) {
     const cards = shuffle(data.data)
     let name = null;
     let current = []
-
     //Mixes gifs
     function shuffle(array) {
         let currentIndex = array.length;
@@ -63,11 +61,14 @@ function Game({ range, data, score, setScore}) {
             setScore({...score, score: 0})
             setMemory([])
         } else {
-            setScore({...score, score: score.score + 1})
+            const newScore = score.score + 1
+            setScore(
+                (newScore > score.highScore 
+                    ? {score: newScore, highScore: newScore} 
+                    : {...score, score: newScore}
+                )
+            )
             setMemory([...memory, e.id])
-            if(score.score + 1 > score.highScore) {
-                setScore({...score, highScore: score.score})
-            }
         }
     }
     //Waits for all gifs to be loaded to display
@@ -88,8 +89,6 @@ function Game({ range, data, score, setScore}) {
             }
         }
     }
-
-
     // GIF Class Name
     if(range < 10) {
         name = "gif gif-l"
@@ -97,9 +96,8 @@ function Game({ range, data, score, setScore}) {
         name = "gif gif-m"
     } else {
         name = "gif gif-s"
-    }  
-   
- 
+    }
+    
     return (
         <>
             <div className="loading-bar">
@@ -125,10 +123,6 @@ function Game({ range, data, score, setScore}) {
 
     )
 };
-
-
-
-
 
 
 export default StartGame;

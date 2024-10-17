@@ -3,14 +3,17 @@
   text-align: center;
   display: grid;
   margin: 0px auto;
-  align-items: center;
+  margin-top: 1vh;
+  padding: 0px 15px;
+  row-gap: 30px;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 115px 1fr;
+  align-self: flex-start;
+  grid-template-rows: 100px 1fr;
 }
 
 .title{
   position: absolute;
-  margin: 0px auto;
+  margin: auto;
   grid-column: 1/-1;
   cursor: pointer;
   width: fit-content;
@@ -21,9 +24,28 @@
   font-size: 1.2em;
 }
 
-.title h1 {
-}
 
 .return-text {
   display: none;
+}
+
+@media screen and (max-width: 750px) {
+  #root{
+    row-gap: 10px;
+  }
+  
+  .title{
+    font-size: 1em;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  #root{
+    row-gap: 0px;
+  }
+  .title{
+    font-size: 0.8em;
+  }
+
 }

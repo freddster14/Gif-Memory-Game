@@ -30,6 +30,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
+  color: rgb(0, 0, 0);
   transition: border-color 0.25s;
 }
 button:hover {
@@ -39,4 +40,6 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+
 
