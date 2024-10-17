@@ -12,7 +12,8 @@ function Score({
     }
 
     function tryAgain() {
-        document.querySelector('.win-screen').style.display = "none"
+        document.querySelector('.win-screen').style.display = "none";
+        document.querySelectorAll('img')[0].click()
         setScore({score: 0, highScore:0})
     }
     
