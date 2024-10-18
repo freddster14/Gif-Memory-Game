@@ -3,7 +3,7 @@ import '../styles/Game.css';
 
 function StartGame({range, score, setScore}) {
     const [data, setData] = useState(false);
-    const key = import.meta.env.VITE_API_KEY;
+    const key = process.env.VITE_API_KEY;
     useEffect(() => {
         fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=${range}&offset=0&rating=g&bundle=messaging_non_clips`)
             .then(response => {
