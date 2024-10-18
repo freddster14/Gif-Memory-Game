@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import '../styles/Game.css';
 
+
 function StartGame({range, score, setScore}) {
     const [data, setData] = useState(false);
     const key = import.meta.env.VITE_API_KEY;
